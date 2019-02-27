@@ -1,0 +1,18 @@
+<h2><%= current_user.email %>  </h2>
+<p>
+  <h3>Timeline</h3>
+</p>
+
+<% @posts.each do |p| %>
+  <p>
+    <%= link_to 'Delete Post', post_path(p), method: :delete %>
+    <%= p.timestamp %><br>
+    <%= p.content %>
+  </p>
+  
+<% end %>
+<p>
+
+  <%= link_to 'New post', new_post_path %>
+  <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+</p>
