@@ -2,5 +2,6 @@
 <b><em> <%= c.user.email %> </em></b>
 <%= c.content %><br>
 <%= link_to "Like", ""  %> &nbsp; &nbsp; &nbsp;
+<%= link_to "Delete", post_comment_path(post_id: c.post_id, id: c.id), method: :delete, remote: true  %> &nbsp; &nbsp; &nbsp;
 <%= time_ago_in_words(c.created_at) %>
 </p>
