@@ -1,0 +1,5 @@
+<% if Like.where(likable: p, user_id: current_user.id).exists? %>
+  <%= link_to ' Like', post_like_path(post_id: p.id, id: Like.where(likable: p, user_id: current_user.id)[0].id), method: :delete, remote: true, class: "fa fa-thumbs-up btn", style: "color:lightskyblue;" %>
+<% else %>
+  <%= link_to ' Like', post_likes_path(post_id: p.id), method: :post, remote: true, class: "fa fa-thumbs-up btn"%>
+<% end %>

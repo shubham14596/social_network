@@ -1,14 +1,15 @@
 <div class = "card" style = "width: 30rem;">
-    <div class="card-body">
+    <div class = "card-body">
       <p>
         <%= link_to 'Delete', post_path(p), method: :delete %>
         <%= p.timestamp %><br>
         <%= p.content %>
+        
         <hr>
-          
-        <%= link_to ' Like', "", remote: true, class: "fa fa-thumbs-up btn" %> &nbsp; &nbsp;
-        <%= link_to ' Comments', post_comments_path(p), remote: true, class: "fa fa-comment btn" %>
-
+        <span id = <%= "likes#{p.id}" %> >
+          <%= render(partial: 'like', :locals => {:p => p}) %>
+        </span>
+        <span><%= link_to ' Comments', post_comments_path(p), remote: true, class: "fa fa-comment btn" %></span>
         <hr>
         
         <div id= <%= "comments#{p.id}" %> ></div>

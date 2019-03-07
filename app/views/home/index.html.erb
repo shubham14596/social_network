@@ -7,7 +7,7 @@
 
 <% @posts.each do |p| %>
 
-  <%= render(:partial => "post",  :locals => {:p => p}) %>
+  <%= render(partial: 'post',  :locals => {:p => p}) %>
 
 <% end %>
 <p>
