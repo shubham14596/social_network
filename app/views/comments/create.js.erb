@@ -1,0 +1,2 @@
+
+$("#comments<%= @post.id %>").append(" <%= j render(:partial => "comment",  :locals => {:c => @comment}) %> ");
