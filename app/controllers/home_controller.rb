@@ -8,4 +8,12 @@ class HomeController < ApplicationController
     end
   end
 
+  def search
+    if params[:friend]
+      @users = User.where('first_name LIKE ?', "%#{params[:friend]}%")
+    else
+      @users = User.all
+    end
+  end
+
 end

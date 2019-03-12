@@ -5,6 +5,13 @@
 <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
 </p>
 
+<div>
+<%= form_with url: home_search_path, method: :get do |form| %>
+  <%= form.text_field :friend %>
+  <%= form.submit :search %>
+<% end %>
+</div><br>
+
 <div id="main">
   <ul type="none">
 
