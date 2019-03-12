@@ -5,18 +5,12 @@
   <h3>Timeline</h3>
 </p>
 
-<% @posts.each do |p| %>
+<% @posts.each do |post| %>
 
-  <%= render(partial: 'post',  :locals => {:p => p}) %>
+  <%= render(partial: 'post',  :locals => {:post => post}) %>
 
 <% end %>
 <p>
 
 <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
 </p>
-
-<script type="text/javascript">
-  var colors = ['#ff0000', '#00ff00', '#0000ff'];
-  var random_color = colors[Math.floor(Math.random() * colors.length)];
-  document.getElementById('user').style.color = random_color;
-</script>

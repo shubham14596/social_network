@@ -1,7 +1,7 @@
 <p>
-<b><em> <%= c.user.email %> </em></b>
-<%= c.content %><br>
+<b><em> <%= comment.user.email %> </em></b>
+<%= comment.content %><br>
 <%= link_to "Like", ""  %> &nbsp; &nbsp; &nbsp;
-<%= link_to "Delete", post_comment_path(post_id: c.post_id, id: c.id), method: :delete, remote: true  %> &nbsp; &nbsp; &nbsp;
-<%= time_ago_in_words(c.created_at) %>
+<%= link_to "Delete", post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, remote: true  %> &nbsp; &nbsp; &nbsp;
+<%= time_ago_in_words(comment.created_at) %>
 </p>
