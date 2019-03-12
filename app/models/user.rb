@@ -5,4 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :posts
   has_many :comments
+  has_many :likes
+
+  def liked?(likable)
+  	self.likes.find_by(likable_id: likable.id, likable_type: likable.class.name)
+  end
+
 end
