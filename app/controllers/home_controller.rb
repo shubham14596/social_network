@@ -4,7 +4,7 @@ class HomeController < ApplicationController
     if user_signed_in?
       @posts = current_user.posts
     else
-      redirect_to '/users/sign_in'
+      redirect_to welcome_sign_in_path
     end
   end
 

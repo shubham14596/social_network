@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'home/index'
+  get 'welcome/sign_in'
+  get 'welcome/sign_up'
 
   resources :posts do
     resources  :comments
