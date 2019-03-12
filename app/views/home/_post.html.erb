@@ -3,11 +3,14 @@
       <p>
         <%= link_to 'Delete', post_path(post), method: :delete %>
         <%= post.timestamp %><br>
-        <%= post.content %>
+        <%= post.content %><br>
+        <% if post.image.attached? %>
+          <%= image_tag post.image, style: "width:20rem;" %>
+        <% end %>
         
         <hr>
         <span id = <%= "likes#{post.id}" %> >
-          <%= render(partial: 'like', locals: {post: post}) %>
+          <%= render(partial: 'home/like', locals: {post: post}) %>
         </span>
         <span><%= link_to ' Comments', post_comments_path(post), remote: true, class: "fa fa-comment btn" %></span>
         <hr>

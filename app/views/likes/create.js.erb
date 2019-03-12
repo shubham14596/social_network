@@ -1,5 +1,5 @@
 <% if @likable.class.name == "Post" %>
-	$("#likes<%= @likable.id %>").html(" <%= j render(partial: 'home/like', :locals => {:post => @likable}) %> ");
+  $("#likes<%= @likable.id %>").html(" <%= j render(partial: 'home/like', :locals => {:post => @likable}) %> ");
 <% else %>
-	$("#like<%= @likable.id %>").html(" <%= j render(partial: 'comments/comment_like', :locals => {:comment => @likable}) %> ");
+  $("#like<%= @likable.id %>").html(" <%= j render(partial: 'comments/comment_like', :locals => {:comment => @likable}) %> ");
 <% end %>
