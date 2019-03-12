@@ -1,7 +1,9 @@
 <p>
 <b><em> <%= comment.user.email %> </em></b>
 <%= comment.content %><br>
-<%= link_to "Like", ""  %> &nbsp; &nbsp; &nbsp;
+<span id = "like<%= comment.id %>">
+	<%= render( partial: 'comments/comment_like', locals: {comment: comment})  %>
+</span> &nbsp; &nbsp; &nbsp;
 <%= link_to "Delete", post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, remote: true  %> &nbsp; &nbsp; &nbsp;
 <%= time_ago_in_words(comment.created_at) %>
 </p>
