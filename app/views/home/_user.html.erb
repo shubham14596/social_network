@@ -1,3 +1,8 @@
 <li>
   <%= link_to "#{user.first_name} #{user.last_name}", home_show_path %>
+  <% if current_user.friendship?(user) %>
+    <%= link_to ' Friend', friendship_path(id: current_user.friendship?(user).id), method: :delete, class: "fa fa-check" %>
+  <% else %>
+    <%= link_to 'Add Friend', friendships_path(friend_id: user), method: :post %>
+  <% end %>
 </li>

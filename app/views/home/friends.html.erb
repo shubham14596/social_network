@@ -1,0 +1,42 @@
+<nav class="navbar" style="background-color: #777777;">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+    <h2 class = "nav navbar-nav navbar-left">Welcome, <%= current_user.first_name %></h2>
+    <p class="nav navbar-nav navbar-right"><img src="/assets/logo.jpg" style="width:25rem;height:5rem"></p>
+    </div>
+  </div>
+</nav>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav " style="flex-direction: row;">
+        <li><a href="/home/index">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li class="active"><a href="#">Friends</a></li>
+        <li><a href="#">Photos</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" style="flex-direction: row;">
+        <li><a href="#"><span class="fa fa-odnoklassniki"></span></a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-envelope"></span></a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
+        <li><span class="glyphicon glyphicon-log-in"></span><%= link_to 'Logout', destroy_user_session_path, method: :delete, style: "display:inline" %></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+<div>
+<%= form_with url: home_search_path, method: :get do |form| %>
+  <%= form.text_field :friend %>
+  <%= form.submit :search %>
+<% end %>
+</div><br>
+
+<div id="main">
+  <ul id="body" type="none">
+    <% @friends.each do |f| %>
+      <li><%= "#{f.first_name} #{f.last_name}\t" %><i class="fa fa-check"></i> Friend</li>
+    <% end %>
+  </ul>
+</div>

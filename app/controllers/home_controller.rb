@@ -1,9 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    if user_signed_in?
-      @posts = current_user.posts
-    else
+    if !(user_signed_in?)
       redirect_to welcome_sign_in_path
     end
   end
@@ -14,6 +12,11 @@ class HomeController < ApplicationController
     else
       @users = User.all
     end
+  end
+
+  def friends
+    @friends = current_user.friends
+    @friends = @friends + (current_user.inverse_friends)
   end
 
   def show
