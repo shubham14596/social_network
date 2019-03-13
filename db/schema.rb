@@ -15,22 +15,6 @@ ActiveRecord::Schema.define(version: 2019_03_12_143225) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "account_histories", force: :cascade do |t|
-    t.bigint "account_id"
-    t.integer "credit_rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_account_histories_on_account_id"
-  end
-
-  create_table "accounts", force: :cascade do |t|
-    t.bigint "supplier_id"
-    t.string "account_number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["supplier_id"], name: "index_accounts_on_supplier_id"
-  end
-
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -78,12 +62,6 @@ ActiveRecord::Schema.define(version: 2019_03_12_143225) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-  end
-
-  create_table "suppliers", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
