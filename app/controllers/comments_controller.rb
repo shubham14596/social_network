@@ -7,7 +7,6 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.js
     end
-
   end
 
   def index
@@ -27,12 +26,12 @@ class CommentsController < ApplicationController
   end
 
   private
-    def comment_params
-      params.require(:comment).permit(:content)
-    end
 
-    def find_post
-      @post = Post.find_by_id(params[:post_id])
-    end
+  def comment_params
+    params.require(:comment).permit(:content)
+  end
 
+  def find_post
+    @post = Post.find_by_id(params[:post_id])
+  end
 end

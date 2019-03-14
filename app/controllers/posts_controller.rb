@@ -12,8 +12,8 @@ class PostsController < ApplicationController
     @post.save
     respond_to do |format|
       format.js
-      format.html {redirect_to root_path}
-    end  
+      format.html { redirect_to root_path }
+    end
   end
 
   def destroy
@@ -23,8 +23,8 @@ class PostsController < ApplicationController
   end
 
   private
-    def post_params
-      params.require(:post).permit(:content)
-    end
 
+  def post_params
+    params.require(:post).permit(:content)
+  end
 end
