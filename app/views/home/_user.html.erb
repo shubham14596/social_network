@@ -1,5 +1,5 @@
 <li>
-  <%= link_to "#{user.first_name} #{user.last_name}", home_show_path %>
+  <%= link_to "#{user.first_name} #{user.last_name}", home_show_path(user_id: user.id) %>
   <% if current_user.find_friendship(user) %>
     <%= link_to ' Friend', friendship_path(id: current_user.find_friendship(user).id), method: :delete, class: "fa fa-check" %>
   <% else %>

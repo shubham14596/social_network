@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_action :find_user
+
   def index
     redirect_to welcome_sign_in_path unless user_signed_in?
   end
@@ -12,12 +14,23 @@ class HomeController < ApplicationController
       end
   end
 
+  def about
+  end
+
   def friends
-    friends = current_user.friends
-    @friends = friends + current_user.inverse_friends
+    friends = @user.friends
+    @friends = friends + @user.inverse_friends
+  end
+
+  def photos
   end
 
   def show
+  end
+
+  private
+
+  def find_user
     @user = User.find_by_id(params[:user_id])
   end
 end

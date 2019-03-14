@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Fb</title>
+    <title>Science Buzz</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -17,7 +17,26 @@
   </head>
 
   <body>
-    
+    <% if user_signed_in? %>
+      <nav class="navbar bg-light">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse">
+            <h2 class = "nav navbar-nav navbar-left">Welcome, <%= link_to "#{current_user.first_name}", home_show_path(user_id: current_user.id) %></h2>
+            <%= form_with url: home_search_path, method: :get do |form| %>
+              <%= form.text_field :friend %>
+            <% end %>
+            <ul class="nav navbar-nav navbar-right" style="flex-direction: row;">
+              <li><a href="/home/index">Home</a></li>
+              <li><a href="#"><span class="fa fa-odnoklassniki"></span></a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-envelope"></span></a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
+              <li><span class="glyphicon glyphicon-log-in"></span><%= link_to 'Logout', destroy_user_session_path, method: :delete, style: "display:inline" %></li>
+              <li><img src="/assets/logo.jpg" style="width:25rem;height:5rem"></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <% end %>
     <%= yield %>
   </body>
 </html>

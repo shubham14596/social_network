@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'welcome/sign_up'
   get 'home/search'
   get 'home/friends'
+  get 'home/about'
+  get 'home/photos'
 
   resources :posts do
     resources  :comments
