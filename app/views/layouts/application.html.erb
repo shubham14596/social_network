@@ -22,7 +22,7 @@
         <div class="container-fluid">
           <div class="collapse navbar-collapse">
             <h2 class = "nav navbar-nav navbar-left">Welcome, <%= link_to "#{current_user.first_name}", home_show_path(user_id: current_user.id) %></h2>
-            <%= form_with url: home_search_path, method: :get do |form| %>
+            <%= form_with url: home_search_path, method: :get, local:true do |form| %>
               <%= form.text_field :friend %>
             <% end %>
             <ul class="nav navbar-nav navbar-right" style="flex-direction: row;">

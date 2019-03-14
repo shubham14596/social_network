@@ -1,28 +1,44 @@
 <div class = "card" style = "width: 30rem;">
-    <div class = "card-body">
-      <p>
-        <%= link_to 'Delete', post_path(post), method: :delete %>
-        <%= post.timestamp %><br>
-        <%= post.content %><br>
-        <% if post.image.attached? %>
-          <%= image_tag post.image, style: "width:100%;" %>
-        <% end %>
-        
-        <hr>
-        <span id = <%= "likes#{post.id}" %> >
-          <%= render(partial: 'home/like', locals: {post: post}) %>
+  <div class = "card-body">
+    <p>
+      <%= link_to "#{post.user.first_name} #{post.user.last_name}" %><br>
+      <%= time_ago_in_words(post.created_at) %><br>
+      <% if current_user==post.user %>
+        <span style="float:right">
+          <%= link_to 'Delete', post_path(post), method: :delete %>
+          <button type="button" class="pmenu btn btn-default dropdown-toggle"></button>
+          <ul class="dropdown dropdown-menu">
+            <li><%= link_to "Edit", "#" %></li>
+            <li><%= link_to "Delete", "#" %></li>
+          </ul>
         </span>
-        <span><%= link_to ' Comments', post_comments_path(post), remote: true, class: "fa fa-comment btn" %></span>
-        <hr>
-        
-        <div id= <%= "comments#{post.id}" %> ></div>
-        
-        <div id= "add_comment" >
-          <%= form_with(model: [ post, post.comments.build ], remote: true ) do |f| %>
-            <%= f.text_field :content, placeholder: "Add a comment.." %>
-            <%= f.submit("Submit") %>
-          <% end %>
-        </div>
-      </p>
-    </div>
+      <% end %>
+      <%= post.content %><br>
+      <% if post.image.attached? %>
+        <%= image_tag post.image, style: "width:100%;" %>
+      <% end %>
+      
+      <hr>
+      <span id = <%= "likes#{post.id}" %> >
+        <%= render(partial: 'home/like', locals: {post: post}) %>
+      </span>
+      <span><%= link_to ' Comments', post_comments_path(post), remote: true, class: "fa fa-comment btn" %></span>
+      <hr>
+      
+      <div id= <%= "comments#{post.id}" %> ></div>
+      
+      <div id= "add_comment" >
+        <%= form_with(model: [ post, post.comments.build ], remote: true ) do |f| %>
+          <%= f.text_field :content, placeholder: "Add a comment.." %>
+          <%= f.submit("Submit") %>
+        <% end %>
+      </div>
+    </p>
   </div>
+</div>
+
+<script>
+  $(".pmenu").click(function(){
+  $(".dropdown").slideToggle();
+  });
+</script>

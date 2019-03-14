@@ -19,7 +19,7 @@ class HomeController < ApplicationController
 
   def friends
     friends = @user.friends
-    @friends = friends + @user.inverse_friends
+    @friends = (friends + @user.inverse_friends).uniq
   end
 
   def photos

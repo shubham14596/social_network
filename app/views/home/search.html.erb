@@ -1,15 +1,15 @@
-<%= render(partial: 'home/top', locals: {user: @user}) %>
-
 <div class="row">
   <span class="col-md-1"></span>
   <div id="main" class="col-md-4">
     <ul id="body" type="none">
-      <% @friends.each do |f| %>
+      <% @users.each do |user| %>
         <div class="row">
           <div class="col-md-5">
-            <%= link_to "#{f.first_name} #{f.last_name}", home_show_path(user_id: f.id) %>
+            <%= link_to "#{user.first_name} #{user.last_name}", home_show_path(user_id: user.id) %>
           </div>
-          <div class="col-md-4"><i class="fa fa-check"></i> Friend</div></li>
+          <div class="col-md-4">
+            <%= render(partial: 'friendship', locals:{user: user}) %>
+          </div></li>
         </div>
         <hr>
       <% end %>
