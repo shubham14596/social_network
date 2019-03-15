@@ -22,4 +22,8 @@ class User < ApplicationRecord
   def find_friendship(friend)
     friendships.find_by(friend_id: friend.id)
   end
+
+  def self.find_user(id)
+    find_by_id(id)
+  end
 end
