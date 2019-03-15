@@ -1,7 +1,7 @@
 <% if (current_user.find_friendship(user) && (current_user.find_friendship(user).status == 1)) %>
   <%= link_to ' Friend', friendship_path(id: current_user.find_friendship(user).id), method: :delete, class: "fa fa-check" %>
 <% elsif (user.find_friendship(current_user) && (user.find_friendship(current_user).status == 1)) %>
-  <%= link_to ' Friend', friendship_path(id: user.find_friendship(current_user).id), method: :delete, class: "fa fa-check" %>
+  <%= link_to ' Friend', friendship_path(id: user.find_friendship(current_user).id, user_id: user.id), method: :delete, class: "fa fa-check" %>
 <% elsif current_user.find_friendship(user) %>
   <%= link_to 'Requested', friendship_path(id: current_user.find_friendship(user).id), method: :delete %>
 <% elsif user.find_friendship(current_user) %>

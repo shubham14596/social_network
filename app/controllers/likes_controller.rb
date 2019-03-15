@@ -2,8 +2,7 @@ class LikesController < ApplicationController
   before_action :authenticate_user!, :set_up_likable
 
   def create
-    @like = @likable.likes.new
-    @like.user_id = current_user.id
+    @like = @likable.likes.build(user_id: current_user.id)
     @like.save
     respond_to do |format|
       format.js
@@ -21,11 +20,14 @@ class LikesController < ApplicationController
   private
 
   def set_up_likable
-    @likable =
+    unless (@likable =
       if params[:post_id]
         Post.find(params[:post_id])
       else
         Comment.find(params[:comment_id])
-      end
+      end)
+      flash[:notice] = 'Not found'
+      render layout: false
+    end
   end
 end

@@ -3,9 +3,8 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.build(comment_params.merge(user_id: current_user.id))
-    @comment.save
     respond_to do |format|
-      format.js
+      @comment.save ? format.js : flash[:notice] = 'unable to create comment'
     end
   end
 
@@ -19,9 +18,8 @@ class CommentsController < ApplicationController
   def destroy
     @comments = @post.comments
     @comment = @comments.find(params[:id])
-    @comment.destroy
     respond_to do |format|
-      format.js
+      comment.destroy ? format.js : flash[:notice] = 'unable to delete comment'
     end
   end
 
@@ -32,6 +30,9 @@ class CommentsController < ApplicationController
   end
 
   def find_post
-    @post = Post.find_by_id(params[:post_id])
+    unless @post = Post.find_by_id(params[:post_id])
+      flash[:notice] = 'Post not found'
+      render layout: false
+    end
   end
 end

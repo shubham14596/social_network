@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :find_user
+  before_action :find_user, only: [:about, :friends, :photos, :show]
 
   def index
     redirect_to welcome_sign_in_path unless user_signed_in?
@@ -18,10 +18,11 @@ class HomeController < ApplicationController
   end
 
   def friends
-      @friends = []
-      friendships.each { |f| @friends.push(User.find_user(f.friend_id)) }
-      inverse_friendships.each { |f| @friends.push(User.find_user(f.user_id)) }
-      @friends.uniq!
+    
+    # @friends = []
+    # friendships.each { |f| @friends.push(User.find_user(f.friend_id)) }
+    # inverse_friendships.each { |f| @friends.push(User.find_user(f.user_id)) }
+    # @friends.uniq!
   end
 
   def photos
@@ -33,7 +34,10 @@ class HomeController < ApplicationController
   private
 
   def find_user
-    @user = User.find_by_id(params[:user_id])
+    unless @user = User.find_by_id(params[:user_id])
+      flash[:notice] = 'User not found'
+      render layout: false
+    end
   end
 
   private
