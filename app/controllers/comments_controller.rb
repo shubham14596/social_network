@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
     @comments = @post.comments
     @comment = @comments.find(params[:id])
     respond_to do |format|
-      comment.destroy ? format.js : flash[:notice] = 'unable to delete comment'
+      @comment.destroy ? format.js : flash[:notice] = 'unable to delete comment'
     end
   end
 

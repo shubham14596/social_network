@@ -8,15 +8,13 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    friendship = current_user.friendships.find_by_id(params[:id])
-    @friendship = friendship ? friendship : User.find_user(params[:user_id]).friendships.find_by_id(params[:id])
+    @friendship = Friendship.find_by(id: params[:id])
     flash[:notice] = 'Unable to delete frendship' unless @friendship.destroy
     redirect_to root_url
   end
 
   def update
-    by_user = User.find_by_id(params[:friend_id])
-    @friendship = by_user.friendships.find_by_id(params[:id])
+    @friendship = Friendship.find_by(id: params[:id])
     flash[:notice] = 'Unable to add friend' unless @friendship.update_attribute(:status, 1)
     redirect_to root_url
   end

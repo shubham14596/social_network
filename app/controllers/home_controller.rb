@@ -18,11 +18,8 @@ class HomeController < ApplicationController
   end
 
   def friends
-    
-    # @friends = []
-    # friendships.each { |f| @friends.push(User.find_user(f.friend_id)) }
-    # inverse_friendships.each { |f| @friends.push(User.find_user(f.user_id)) }
-    # @friends.uniq!
+    friends = @user.friends.where('friendships.status = ?', 1)
+    @friends = friends + @user.inverse_friends.where('friendships.status = ?', 1)
   end
 
   def photos
@@ -38,15 +35,5 @@ class HomeController < ApplicationController
       flash[:notice] = 'User not found'
       render layout: false
     end
-  end
-
-  private
-
-  def friendships
-    @friendships = @user.friendships.where(status: 1)
-  end
-
-  def inverse_friendships
-    @inverse_friendships = @user.inverse_friendships.where(status: 1)
   end
 end

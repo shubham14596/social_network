@@ -7,10 +7,9 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
       <style>
         .navbar {
-          margin-bottom: 0;
+          margin-bottom: 5;
           border-radius: 0;
         }
       </style>
@@ -18,22 +17,20 @@
 
   <body>
     <% if user_signed_in? %>
-      <nav class="navbar bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
-          <div class="collapse navbar-collapse">
-            <h2 class = "nav navbar-nav navbar-left">Welcome, <%= link_to "#{current_user.first_name}", home_show_path(user_id: current_user.id) %></h2>
-            <%= form_with url: home_search_path, method: :get, local:true do |form| %>
-              <%= form.text_field :friend %>
-            <% end %>
-            <ul class="nav navbar-nav navbar-right" style="flex-direction: row;">
-              <li><a href="/home/index">Home</a></li>
-              <li><a href="#"><span class="fa fa-odnoklassniki"></span></a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-envelope"></span></a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
-              <li><span class="glyphicon glyphicon-log-in"></span><%= link_to 'Logout', destroy_user_session_path, method: :delete, style: "display:inline" %></li>
-              <li><img src="/assets/logo.jpg" style="width:25rem;height:5rem"></li>
-            </ul>
-          </div>
+          <h3 class = "nav">Welcome,</h3> <h3 class="nav"><%= link_to "#{current_user.first_name}", home_show_path(user_id: current_user.id), style: "color: black" %></h3>
+          <%= form_with url: home_search_path, method: :get, local:true do |form| %>
+            <%= form.text_field :friend, placeholder: "Search.." %>
+          <% end %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a class="nav-link" href="/home/index">Home</a></li>
+            <li><a class="nav-link" href="#"><span class="fa fa-odnoklassniki"></span></a></li>
+            <li><a class="nav-link" href="#"><span class="fa fa-envelope"></span></a></li>
+            <li><a class="nav-link" href="#"><span class="fa fa-bell"></span></a></li>
+            <li><span class="fa fa-sign-out"></span><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav-link", style: "display:inline" %></li>
+            <li><img src="/assets/logo.jpg" style="width:15rem;height:3rem"></li>
+          </ul>
         </div>
       </nav>
     <% end %>
