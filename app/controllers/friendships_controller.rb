@@ -1,5 +1,5 @@
 class FriendshipsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :find_friendship, only: [:destroy, :update]
 
   def create
     @friendship = current_user.friendships.create(friend_id: params[:friend_id], status: 0)
@@ -8,14 +8,18 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @friendship = Friendship.find_by(id: params[:id])
     flash[:notice] = 'Unable to delete frendship' unless @friendship.destroy
     redirect_to root_url
   end
 
   def update
-    @friendship = Friendship.find_by(id: params[:id])
     flash[:notice] = 'Unable to add friend' unless @friendship.update_attribute(:status, 1)
     redirect_to root_url
+  end
+
+  private
+
+  def find_friendship
+    @friendship = Friendship.find_by(id: params[:id])
   end
 end

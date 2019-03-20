@@ -1,2 +1,7 @@
-<li> <%= "#{request.first_name} #{request.last_name}" %> </li>
+<li>
+  <div class = "row">
+    <span class="col-sm-4"><%= "#{request.first_name} #{request.last_name}" %></span>
+    <span class="col-sm-4"><%= link_to 'Confirm', friendship_path(id: request.find_friendship(current_user).id), method: :patch %> </li></span>
+ </div>
+</li>
 <li> <hr> </li>

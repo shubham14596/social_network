@@ -1,18 +1,20 @@
 <div class = "card" style = "width: 30rem;">
+  <div class="card-header">
+    <% if current_user==post.user %>
+      <span style="float:right" class="dropdown">
+        <%= link_to 'Delete', post_path(post), method: :delete %>
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"></button>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Edit", "#", class: "dropdown-item" %></li>
+          <li><%= link_to "Delete", "#", class: "dropdown-item" %></li>
+        </ul>
+      </span>
+    <% end %>
+    <%= link_to "#{post.user.first_name} #{post.user.last_name}" %><br>
+    <%= time_ago_in_words(post.created_at) %><br>
+  </div>
   <div class = "card-body">
-    <p>
-      <%= link_to "#{post.user.first_name} #{post.user.last_name}" %><br>
-      <%= time_ago_in_words(post.created_at) %><br>
-      <% if current_user==post.user %>
-        <span style="float:right" class="dropdown">
-          <%= link_to 'Delete', post_path(post), method: :delete %>
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"></button>
-          <ul class="dropdown-menu">
-            <li><%= link_to "Edit", "#", class: "dropdown-item" %></li>
-            <li><%= link_to "Delete", "#", class: "dropdown-item" %></li>
-          </ul>
-        </span>
-      <% end %>
+    
       <%= post.content %><br>
       <% if post.image.attached? %>
         <%= image_tag post.image, style: "width:100%;" %>
@@ -29,10 +31,9 @@
       
       <div id= "add_comment" >
         <%= form_with(model: [ post, post.comments.build ], remote: true ) do |f| %>
-          <%= f.text_field :content, placeholder: "Add a comment.." %>
-          <%= f.submit("Submit") %>
+          <%= f.text_field :content, placeholder: "Add a comment..", style: "width: 100%" %>
         <% end %>
       </div>
-    </p>
+    
   </div>
 </div>

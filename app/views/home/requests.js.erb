@@ -1,2 +1,2 @@
-$('#requests').html(" <%= j render @requests %> ");
+$('#requests').html(" <%= j render(partial: 'request', collection: @requests) %> ");
 $('#requests').dropdown('toggle');
