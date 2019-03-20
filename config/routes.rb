@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'home/friends'
   get 'home/about'
   get 'home/photos'
+  get 'home/requests'
 
   resources :posts do
     resources  :comments

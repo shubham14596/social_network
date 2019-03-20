@@ -25,6 +25,10 @@ class HomeController < ApplicationController
   def photos
   end
 
+  def requests
+    @requests = current_user.inverse_friends.where('friendships.status = ?', 0)
+  end
+
   def show
   end
 

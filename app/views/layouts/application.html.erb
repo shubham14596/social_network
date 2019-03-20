@@ -25,7 +25,12 @@
           <% end %>
           <ul class="nav navbar-nav navbar-right">
             <li><a class="nav-link" href="/home/index">Home</a></li>
-            <li><a class="nav-link" href="#"><span class="fa fa-odnoklassniki"></span></a></li>
+            <li class="nav-link dropdown">
+              <%= link_to "", home_requests_path, data: {toggle: "dropdown"}, class: "fa fa-odnoklassniki", remote: true %>
+              <ul class="requests dropdown-menu">
+                <li><a href="#">Action</a></li>
+              </ul>
+            </li>
             <li><a class="nav-link" href="#"><span class="fa fa-envelope"></span></a></li>
             <li><a class="nav-link" href="#"><span class="fa fa-bell"></span></a></li>
             <li><span class="fa fa-sign-out"></span><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav-link", style: "display:inline" %></li>
