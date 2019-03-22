@@ -3,23 +3,32 @@ class FriendshipsController < ApplicationController
 
   def create
     @friendship = current_user.friendships.create(friend_id: params[:friend_id], status: 0)
-    @friendship.save
-    redirect_back(fallback_location: root_path)
+    if @friendship.save
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def destroy
-    @friendship.destroy
-    redirect_back(fallback_location: root_path)
+    if (@friendship.user_id == current_user.id) || (@friendship.friend_id == current_user.id)
+      if @friendship.destroy
+        redirect_back(fallback_location: root_path)
+      end
+    end
   end
 
   def update
-    flash[:notice] = 'Unable to add friend' unless @friendship.update_attribute(:status, 1)
-    redirect_back(fallback_location: root_path)
+    if @friendship.friend_id == current_user.id
+      if @friendship.update_attribute(:status, 1)
+        redirect_back(fallback_location: root_path)
+      end
+    end
   end
 
   private
 
   def find_friendship
-    @friendship = Friendship.find_by(id: params[:id])
+    unless @friendship = Friendship.find_by(id: params[:id])
+      render layout: false
+    end
   end
 end

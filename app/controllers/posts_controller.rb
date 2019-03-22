@@ -14,15 +14,16 @@ class PostsController < ApplicationController
         format.js
         format.html { redirect_to root_path }
       else
-        flash[:notice] = 'Unable to create post'
+        format.js { render 'create_alert' }
       end
     end
   end
 
   def destroy
     @post = current_user.posts.find(params[:id])
-    flash[:notice] = 'Unable to delete post' unless @post.destroy
-    redirect_to root_path
+    if @post.destroy
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   private
