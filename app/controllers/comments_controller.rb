@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @post.comments.build(comment_params.merge(user_id: current_user.id))
     respond_to do |format|
-      @comment.save ? format.js : flash[:notice] = 'unable to create comment'
+      @comment.save ? format.js : format.js { render :create_alert }
     end
   end
 
@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
     @comments = @post.comments
     @comment = @comments.find(params[:id])
     respond_to do |format|
-      @comment.destroy ? format.js : flash[:notice] = 'unable to delete comment'
+      @comment.destroy ? format.js : format.js { render :destroy_alert }
     end
   end
 

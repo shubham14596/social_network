@@ -2,28 +2,32 @@
 
 <div id="main">
   <ul id="body" type="none">
+    <% if current_user == @user %>
+      <div class = "card panel panel-default" style = "margin-left: 20rem; width: 30rem;">
+        <div class = "card-body">
+          <%= form_with scope: :post,url: posts_path do |form| %>
+            <p>
+              <%= form.text_field :content, placeholder: "share your wits.."%>
+              <%= form.file_field :image %>
+            </p>
+       
+            <p>
+              <%= form.submit :Post , class: "btn btn-success" %>
+            </p>
 
-    <div class = "card panel panel-default" style = "margin-left: 20rem; width: 30rem;">
-      <div class = "card-body">
-        <%= form_with scope: :post,url: posts_path do |form| %>
-          <p>
-            <%= form.text_field :content, placeholder: "share your wits.."%>
-            <%= form.file_field :image %>
-          </p>
-     
-          <p>
-            <%= form.submit :Post , class: "btn btn-success" %>
-          </p>
-
-        <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
-
+    <% end %>
     <div id = "posts" class="panel panel-default" style = "margin-left: 20rem; width: 30rem;">
-      <% @user.posts.each do |post| %>
-        <li>
-          <%= render(partial: 'post',  :locals => {:post => post}) %>
-        </li>
+      <% if @user.posts.empty? %>
+        No Posts to show
+      <% else %>
+        <% @user.posts.each do |post| %>
+          <li>
+            <%= render(partial: 'post',  :locals => {:post => post}) %>
+          </li>
+        <% end %>
       <% end %>
     </div>
 

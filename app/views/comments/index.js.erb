@@ -1,1 +1,5 @@
-$("#comments<%= @post.id %>").html(" <%= j render partial: 'comment', collection: @comments, as: :comment %> ");
+var com_box = $("#comments<%= @post.id %>");
+if (com_box[0].style.display === "none") {
+  com_box.html(" <%= j render partial: 'comment', collection: @comments, as: :comment %> ");
+}
+com_box.toggle();

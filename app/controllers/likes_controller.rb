@@ -3,17 +3,15 @@ class LikesController < ApplicationController
 
   def create
     @like = @likable.likes.build(user_id: current_user.id)
-    @like.save
     respond_to do |format|
-      format.js
+      @like.save ? format.js : format.js { render :create_alert }
     end
   end
 
   def destroy
     @like = @likable.likes.find(params[:id])
-    @like.destroy
     respond_to do |format|
-      format.js
+      @like.destroy ? format.js : format.js { render :destroy_alert }
     end
   end
 

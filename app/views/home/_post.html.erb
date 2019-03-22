@@ -2,15 +2,14 @@
   <div class="card-header">
     <% if current_user==post.user %>
       <span style="float:right" class="dropdown">
-        <%= link_to 'Delete', post_path(post), method: :delete %>
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"></button>
         <ul class="dropdown-menu">
           <li><%= link_to "Edit", "#", class: "dropdown-item" %></li>
-          <li><%= link_to "Delete", "#", class: "dropdown-item" %></li>
+          <li><%= link_to "Delete", post_path(post), method: :delete, class: "dropdown-item" %></li>
         </ul>
       </span>
     <% end %>
-    <%= link_to "#{post.user.first_name} #{post.user.last_name}" %><br>
+    <%= link_to "#{post.user.first_name} #{post.user.last_name}", home_show_path(user_id: post.user.id) %><br>
     <%= time_ago_in_words(post.created_at) %><br>
   </div>
   <div class = "card-body">
@@ -27,7 +26,7 @@
       <span><%= link_to ' Comments', post_comments_path(post), remote: true, class: "fa fa-comment btn" %></span>
       <hr>
       
-      <div id= <%= "comments#{post.id}" %> ></div>
+      <div id= <%= "comments#{post.id}" %> style="display:none" ></div>
       
       <div id= "add_comment" >
         <%= form_with(model: [ post, post.comments.build ], remote: true ) do |f| %>

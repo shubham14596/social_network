@@ -1,2 +1,6 @@
-$('#requests').html(" <%= j render(partial: 'request', collection: @requests) %> ");
+<% if @requests.empty? %>
+  $('#requests').html("No Friend Requests");
+<% else %>
+  $("#requests").html("<%= j render(partial: 'request', collection: @requests) %>");
+<% end %>
 $('#requests').dropdown('toggle');

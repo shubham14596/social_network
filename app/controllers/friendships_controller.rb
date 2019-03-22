@@ -3,18 +3,18 @@ class FriendshipsController < ApplicationController
 
   def create
     @friendship = current_user.friendships.create(friend_id: params[:friend_id], status: 0)
-    flash[:notice] = 'Unable to send request' unless @friendship.save
-    redirect_to root_url
+    @friendship.save
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
-    flash[:notice] = 'Unable to delete frendship' unless @friendship.destroy
-    redirect_to root_url
+    @friendship.destroy
+    redirect_back(fallback_location: root_path)
   end
 
   def update
     flash[:notice] = 'Unable to add friend' unless @friendship.update_attribute(:status, 1)
-    redirect_to root_url
+    redirect_back(fallback_location: root_path)
   end
 
   private

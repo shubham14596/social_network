@@ -1,2 +1,4 @@
 
-$("#comments<%= @post.id %>").append(" <%= j render(:partial => "comment",  :locals => {:comment => @comment}) %> ");
+var com_box = $("#comments<%= @post.id %>");
+com_box[0].style.display = "block";
+com_box.append(" <%= j render(:partial => "comment",  :locals => {:comment => @comment}) %> ");
