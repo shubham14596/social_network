@@ -1,0 +1,18 @@
+<%= render(partial: 'top', locals: {user: @user}) %>
+
+<div id="main">
+  <ul id="body" type="none">
+    <div id = "posts" class="panel panel-default" style = "margin-left: 20rem; width: 30rem;">
+      <% if @user.posts.empty? %>
+        No Posts to show
+      <% else %>
+        <% @user.posts.each do |post| %>
+          <li>
+            <%= render(partial: 'posts/post',  :locals => {:post => post}) %>
+          </li>
+        <% end %>
+      <% end %>
+    </div>
+
+  </ul>
+</div>

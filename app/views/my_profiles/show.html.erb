@@ -1,0 +1,31 @@
+<%= render 'top' %>
+
+<div id="main">
+  <ul id="body" type="none">
+    <div class = "card panel panel-default" style = "margin-left: 20rem; width: 30rem;">
+      <div class = "card-body">
+        <%= form_with scope: :post,url: posts_path do |form| %>
+          <p>
+            <%= form.text_field :content, placeholder: "share your wits.."%>
+            <%= form.file_field :image %>
+          </p>
+     
+          <p>
+            <%= form.submit :Post , class: "btn btn-success" %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+    <div id = "posts" class="panel panel-default" style = "margin-left: 20rem; width: 30rem;">
+      <% if current_user.posts.empty? %>
+        No Posts to show
+      <% else %>
+        <% current_user.posts.each do |post| %>
+          <li>
+            <%= render(partial: 'posts/post',  :locals => {:post => post}) %>
+          </li>
+        <% end %>
+      <% end %>
+    </div>
+  </ul>
+</div>

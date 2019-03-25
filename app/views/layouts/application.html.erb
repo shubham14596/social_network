@@ -19,14 +19,14 @@
     <% if user_signed_in? %>
       <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
-          <h3 class = "nav">Welcome,</h3> <h3 class="nav"><%= link_to "#{current_user.first_name}", home_show_path(user_id: current_user.id), style: "color: black" %></h3>
-          <%= form_with url: home_search_path, method: :get, local:true do |form| %>
+          <h3 class = "nav">Welcome,</h3> <h3 class="nav"><%= link_to "#{current_user.first_name}", my_profile_path, style: "color: black" %></h3>
+          <%= form_with url: users_search_path, method: :get, local:true do |form| %>
             <%= form.text_field :friend, placeholder: "Search.." %>
           <% end %>
           <ul class="nav navbar-nav navbar-right">
             <li><a class="nav-link" href="/home/index">Home</a></li>
             <li class="nav-link dropdown">
-              <%= link_to "", home_requests_path, class: "fa fa-odnoklassniki", remote: true %>
+              <%= link_to "", my_profiles_requests_path, class: "fa fa-odnoklassniki", remote: true %>
               <ul class="dropdown-menu" id="requests">
                 <li><a href="#">Action</a></li>
               </ul>

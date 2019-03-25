@@ -1,0 +1,24 @@
+<div class="row" style="margin-top: 120px">
+  <span class="col-sm-2"></span>
+  <div class="col-sm-3">
+    <b><%= "#{current_user.first_name} #{current_user.last_name}" %></b>
+  </div>
+  <div class="col-sm-4">
+    <button class="btn btn-primary">Update Profile</button>
+  </div>
+</div>
+<br>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div>
+      <ul class="nav navbar-nav mr-auto" style="flex-direction: row;">
+        <li><a class="nav-item nav-link" href="/my_profile">Timeline</a></li>
+        <li><a class="nav-item nav-link" href="/my_profiles/about">About</a></li>
+        <li><a class="nav-item nav-link" href="/my_profiles/friends">Friends</a></li>
+        <li><a class="nav-item nav-link" href="/my_profiles/photos">Photos</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>

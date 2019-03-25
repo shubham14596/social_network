@@ -1,9 +1,5 @@
-class HomeController < ApplicationController
+class UsersController < ApplicationController
   before_action :find_user, only: [:about, :friends, :photos, :show]
-
-  def index
-    redirect_to welcome_sign_in_path unless user_signed_in?
-  end
 
   def search
     @users =
@@ -23,10 +19,6 @@ class HomeController < ApplicationController
   end
 
   def photos
-  end
-
-  def requests
-    @requests = current_user.inverse_friends.where('friendships.status = ?', 0)
   end
 
   def show
