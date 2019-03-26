@@ -1,5 +1,19 @@
 <div id="main" style="margin-top: 120px">
   <ul id="body" type="none">
+    <div class = "card panel panel-default" style = "margin-left: 20rem; width: 30rem;">
+      <div class = "card-body">
+        <%= form_with scope: :post,url: posts_path do |form| %>
+          <p>
+            <%= form.text_field :content, placeholder: "share your wits.."%>
+            <%= form.file_field :image %>
+          </p>
+     
+          <p>
+            <%= form.submit :Post , class: "btn btn-success" %>
+          </p>
+        <% end %>
+      </div>
+    </div>
     <div id = "posts" class="panel panel-default" style = "margin-left: 20rem; width: 30rem;">
       <% if @posts.empty? %>
         No Posts to show

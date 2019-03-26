@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :inverse_friends, through: :inverse_friendships, source: :user
 
+  has_one_attached :avatar
+
   scope :search_by_first_name, ->(first_name) { where('first_name LIKE ?', "%#{first_name}%") }
 
   def find_like(likable)
@@ -21,5 +23,13 @@ class User < ApplicationRecord
 
   def find_friendship(friend)
     friendships.find_by(friend_id: friend.id)
+  end
+
+  def get_avatar
+    if self.avatar.attached?
+        image_tag self.avatar
+    else
+        image_tag 'profile_pics/profile_pic.png'
+    end
   end
 end

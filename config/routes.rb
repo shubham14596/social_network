@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   get 'my_profiles/about'
   get 'my_profiles/photos'
   get 'my_profiles/timeline'
-
+  get 'my_profiles/avatar_info'
+  post 'my_profiles/change_avatar'
+  
   resource :my_profile
 
   resources :posts do

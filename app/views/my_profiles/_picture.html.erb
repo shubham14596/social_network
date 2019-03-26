@@ -1,0 +1,14 @@
+<% if current_user.avatar.attached? %>
+<%= image_tag current_user.avatar, style: "width: 100px; height: 100px" %>
+<% else %>
+<%= image_tag 'profile_pics/profile_pic.png', style: "width: 100px; height: 100px" %>
+<% end %>
+<%= form_with scope: :user,url: my_profiles_change_avatar_path do |form| %>
+  <p>
+    <%= form.file_field :avatar %>
+  </p>
+
+  <p>
+    <%= form.submit :Change , class: "btn btn-success" %>
+  </p>
+<% end %>

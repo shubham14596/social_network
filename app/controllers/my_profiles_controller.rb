@@ -27,4 +27,12 @@ class MyProfilesController < ApplicationController
 
   def photos
   end
+
+  def avatar_info
+  end
+
+  def change_avatar
+    current_user.avatar.attach(params[:user][:avatar])
+    redirect_back(fallback_location: root_path)
+  end
 end
