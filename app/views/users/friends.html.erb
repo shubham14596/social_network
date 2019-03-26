@@ -10,11 +10,7 @@
             <%= link_to "#{f.first_name} #{f.last_name}", users_show_path(user_id: f.id) %>
           </div>
             <div class="col-md-4">
-              <% if current_user == @user %>
-                <i class="fa fa-check"></i> Friend
-              <% else %>
-                <%= render(partial: 'friendship', locals:{user: f}) %>
-              <% end %>
+              <%= render(partial: 'friendship', locals:{user: f}) %>
             </div></li>
         </div>
         <hr>

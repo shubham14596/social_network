@@ -1,2 +1,25 @@
 <%= render 'top' %>
 
+<div class="row">
+  <span class="col-md-1"></span>
+  <div id="main" class="col-md-4">
+    <ul id="body" type="none">
+      <% @friends.each do |f| %>
+        <div class="row">
+          <div class="col-md-5">
+
+            <%= link_to "#{f.first_name} #{f.last_name}", users_show_path(user_id: f.id) %>
+          </div>
+            <div class="col-md-4">
+              <% if current_user.find_friendship(f) %>
+                <%= link_to ' Friend', friendship_path(id: current_user.find_friendship(f).id), method: :delete, class: "fa fa-check" %>
+              <% else %>
+                <%= link_to ' Friend', friendship_path(id: f.find_friendship(current_user).id), method: :delete, class: "fa fa-check" %>
+              <% end %>
+            </div>
+        </div>
+        <hr>
+      <% end %>
+    </ul>
+  </div>
+</div>

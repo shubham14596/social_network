@@ -17,6 +17,8 @@ class MyProfilesController < ApplicationController
   end
 
   def friends
+    friends = current_user.friends.where('friendships.status = ?', 1)
+    @friends = friends + current_user.inverse_friends.where('friendships.status = ?', 1)
   end
 
   def photos

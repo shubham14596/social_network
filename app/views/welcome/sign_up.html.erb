@@ -2,10 +2,9 @@
 <center>
 <h2>Sign up</h2>
 
-<%= form_for(User.new, as: :user, url: registration_path(:user)) do |f| %>
+<%= form_for(User.new, as: :user, url: registration_path(:user), style: "color:#000000") do |f| %>
   <%= render "devise/shared/error_messages", resource: User.new %>
 
-<body background = ""
   <div class="field">
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name %>
