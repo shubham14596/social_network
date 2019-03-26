@@ -10,7 +10,11 @@ class MyProfilesController < ApplicationController
   end
 
   def timeline
-    redirect_to welcome_sign_in_path unless user_signed_in?
+    if user_signed_in?
+      @posts = Post.order('created_at DESC').where("user_id != #{current_user.id}").page(params[:page]).per(5)
+    else
+      redirect_to welcome_sign_in_path
+    end
   end
 
   def about

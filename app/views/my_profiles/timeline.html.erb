@@ -1,0 +1,18 @@
+<div id="main" style="margin-top: 120px">
+  <ul id="body" type="none">
+    <div id = "posts" class="panel panel-default" style = "margin-left: 20rem; width: 30rem;">
+      <% if @posts.empty? %>
+        No Posts to show
+      <% else %>
+        <% @posts.each do |post| %>
+          <li>
+            <%= render(partial: 'posts/post',  :locals => {:post => post}) %>
+          </li>
+        <% end %>
+        <%= paginate @posts, theme: 'twitter-bootstrap-3' %>
+        <%= page_entries_info @posts %>
+      <% end %>
+    </div>
+
+  </ul>
+</div>
