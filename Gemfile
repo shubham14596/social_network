@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.0'
 
+gem 'rails_bootstrap_navbar'
+
 gem 'jquery-rails'
 
 gem 'font-awesome-rails'

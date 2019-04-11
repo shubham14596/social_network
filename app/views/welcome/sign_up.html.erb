@@ -5,7 +5,6 @@
 <%= form_for(User.new, as: :user, url: registration_path(:user)) do |f| %>
   <%= render "devise/shared/error_messages", resource: User.new %>
 
-<body background = ""
   <div class="field">
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name %>
