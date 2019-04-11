@@ -16,10 +16,13 @@
   </head>
 
   <body>
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "flash #{key}" %>
+    <% end %>
     <% if user_signed_in? %>
       <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
-          <h3 class = "nav">Welcome,</h3> <h3 class="nav"><%= link_to "#{current_user.first_name}", my_profile_path, style: "color: black" %></h3>
+          <h3 class = "nav">Welcome &nbsp;<%= link_to "#{current_user.first_name}", my_profile_path, style: "color: black" %></h3>
           <%= form_with url: users_search_path, method: :get, local:true do |form| %>
             <%= form.text_field :friend, placeholder: "Search.." %>
           <% end %>
